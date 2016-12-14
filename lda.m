@@ -1,11 +1,17 @@
 function [wckSM, twcSM, Xmk, bcSM, Ev, Ed, J] = lda(X, Y)
     % Inputs:
-    %   DxN X data
+    %   NxD X data
     %   1x1 D dimensions in data
-    %   1xN Y labels
+    %   Nx1 Y labels
     %   1x1 K number of classes
+    
+    X = X';
+    % im so sorry
+    Y = Y';
+    
     [D, ~] = size(X);
     K = length(unique(Y));
+
     % Outputs:
     %   DxDxK wckSM
     DD = sqrt (D);
