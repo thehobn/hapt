@@ -33,10 +33,9 @@ function [wckSM, twcSM, Xmk, bcSM, Ev, Ed, J] = lda(X, Y)
       Compute {within,between}-class scatter matrices
     %}
     for k = 1:K
-        k = C(k);
-      wckSM(:,:,k) = cov( X( :, Y==k )' );
+      wckSM(:,:,k) = cov( X( :, Y==C(k) )' );
       twcSM = twcSM + wckSM(:,:,k);
-      Xmk(:,k) = mean( X( :, Y==k ), 2 );
+      Xmk(:,k) = mean( X( :, Y==C(k) ), 2 );
       %{
       figure(k + K); clf; colormap(gray(256)); imagesc(reshape((Xmk(:,k)),DD,DD),[0 1]);
       set(gca,'XTick',[],'YTick',[]); axis image;
