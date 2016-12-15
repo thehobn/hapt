@@ -10,7 +10,8 @@ function [wckSM, twcSM, Xmk, bcSM, Ev, Ed, J] = lda(X, Y)
     Y = Y';
     
     [D, ~] = size(X);
-    K = length(unique(Y));
+    C = unique(Y);
+    K = length(C);
 
     % Outputs:
     %   DxDxK wckSM
@@ -32,6 +33,7 @@ function [wckSM, twcSM, Xmk, bcSM, Ev, Ed, J] = lda(X, Y)
       Compute {within,between}-class scatter matrices
     %}
     for k = 1:K
+        k = C(k);
       wckSM(:,:,k) = cov( X( :, Y==k )' );
       twcSM = twcSM + wckSM(:,:,k);
       Xmk(:,k) = mean( X( :, Y==k ), 2 );
