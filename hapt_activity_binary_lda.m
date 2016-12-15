@@ -22,5 +22,4 @@ function [training, test] = hapt_activity_binary_lda(hapt, L)
     [~,Sw,~,Sb,U,~,J] = lda(training.X, training.Y);
     [W,~,~,training.X] = lda_project(U, J, L, Sb, Sw, training.X);
     test.X = test.X * W;
-    
 end
